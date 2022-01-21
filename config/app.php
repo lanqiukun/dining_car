@@ -232,6 +232,7 @@ return [
         'UserCtrl' => App\Http\Controllers\UserCtrl::class,
         'DishesCtrl' => App\Http\Controllers\DishesCtrl::class,
         'OrderCtrl' => App\Http\Controllers\OrderCtrl::class,
+        'Category' => App\Category::class,
     ],
 
 ];

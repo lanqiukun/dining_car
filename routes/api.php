@@ -34,3 +34,8 @@ Route::post('/simditor/upload', function() {
 Route::middleware(['check.token'])->group(function() {
     Route::post('submit_order', "OrderCtrl@submit_order");
 });
+
+Route::get('/all_dishes', "DishesCtrl@all");
+Route::get('/top_dishes', "DishesCtrl@top");
+
+Route::get('/all_category', "CategoryCtrl@all");

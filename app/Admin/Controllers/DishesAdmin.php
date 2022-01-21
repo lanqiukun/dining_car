@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Category;
 use App\Dishes;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -29,10 +30,16 @@ class DishesAdmin extends AdminController
         $grid->column('id', __('ID'));
         $grid->column('title', __('名称'))->editable();
         // $grid->column('detail', __('详情'));
-        // $grid->column('imgSrc', __('主图'));
         $grid->column('imgSrc', '主图')->gallery(['height' => 80, 'zooming' => true]);
 
+        $categories = Category::pluck('title', 'id')->toArray();
+
+
+        $grid->column('category_id', '分类')->editable('select', $categories);;
+
+
         $grid->column('price', __('价格'));
+        $grid->column('sales', __('销量'))->editable();
         $grid->column('created_at', __('创建时间'));
         // $grid->column('updated_at', __('Updated at'));
 
@@ -72,8 +79,12 @@ class DishesAdmin extends AdminController
         // $form->text('detail', __('详情'));
         $form->simditor('detail', '详情');
         $form->currency('price', __('价格'))->symbol('￥');
-        // $form->text('imgSrc', __('主图'));
         $form->image('imgSrc', '主图');
+        $form->number('sales', __('销量'));
+
+        $categories = Category::pluck('title', 'id')->toArray();
+
+        $form->select( 'category_id', '分类')->options($categories);
 
         return $form;
     }

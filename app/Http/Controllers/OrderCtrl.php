@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dishes;
 use App\Order;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,8 @@ class OrderCtrl extends Controller
             'user_id' => $user_id,
             'dishes_id' => $dishes_id,
         ]);
+
+        Dishes::find($dishes_id)->increment('sales');
 
         return [
             'status' => 0,
