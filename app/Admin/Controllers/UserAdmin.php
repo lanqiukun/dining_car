@@ -27,7 +27,7 @@ class UserAdmin extends AdminController
         $grid = new Grid(new User());
 
         $grid->column('id', __('ID'));
-        $grid->column('avatar', '头像')->gallery(['zooming' => true]);
+        $grid->column('avatar', '头像')->gallery(['height' => 80, 'zooming' => true]);
         $grid->column('nickname', __('昵称'));
         $grid->column('openid', __('openid'));
         // $grid->column('avatar', __('头像'));

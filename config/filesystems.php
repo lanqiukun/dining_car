@@ -48,11 +48,16 @@ return [
             'root' => storage_path('app'),
         ],
 
-        'admin' => [
+        'backend' => [
             'driver' => 'local',
-            'root' => storage_path('images'),
+            'root' => storage_path('backend'),
+            'url' => '/backend',
         ],
 
+        'simditor' => [
+            'driver' => 'local',
+            'root' => storage_path('simditor'),
+        ],
 
         'public' => [
             'driver' => 'local',

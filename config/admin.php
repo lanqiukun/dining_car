@@ -153,7 +153,7 @@ return [
     'upload' => [
 
         // Disk in `config/filesystem.php`.
-        'disk' => 'admin',
+        'disk' => 'backend',
 
         // Image and file upload path under the disk above.
         'directory' => [
@@ -404,9 +404,32 @@ return [
     | https://github.com/laravel-admin-extensions.
     |
     */
-    'grid-lightbox' => [
+
+    'extensions' => [
+        'grid-lightbox' => [
         
-        // Set to `false` if you want to disable this extension
-        'enable' => true,
+            // Set to `false` if you want to disable this extension
+            'enable' => true,
+        ],
+        'simditor' => [
+            // Set to false if you want to disable this extension
+            'enable' => true,
+            // Editor configuration
+            'config' => [
+                'upload' => [
+                    'url' => '/api/simditor/upload', # example api route: admin/api/upload
+                    'fileKey' => 'upload_file',
+                    'connectionCount' => 3,
+                    'leaveConfirm' => 'Uploading is in progress, are you sure to leave this page?'
+                ],
+                'tabIndent' => true,
+                'toolbar' => ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'image', 'hr', '|', 'indent', 'outdent', 'alignment'],
+                'toolbarFloat' => true,
+                'toolbarFloatOffset' => 0,
+                'toolbarHidden' => false,
+                'pasteImage' => true,
+                'cleanPaste' => false,
+            ]
+        ]
     ]
 ];

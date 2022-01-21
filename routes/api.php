@@ -20,3 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::post('/login', "UserCtrl@login");
+
+Route::post('/simditor/upload', function() {
+
+    $path = request()->upload_file->store('simditor');
+
+    return [
+        'status' => 0,
+        'file_path' => '/' . $path,
+    ];
+});
+

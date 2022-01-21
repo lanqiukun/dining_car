@@ -27,9 +27,12 @@ class DishesAdmin extends AdminController
         $grid = new Grid(new Dishes());
 
         $grid->column('id', __('ID'));
-        $grid->column('title', __('名称'));
+        $grid->column('title', __('名称'))->editable();
         // $grid->column('detail', __('详情'));
-        $grid->column('imgSrc', __('主图'));
+        // $grid->column('imgSrc', __('主图'));
+        $grid->column('imgSrc', '主图')->gallery(['height' => 80, 'zooming' => true]);
+
+        $grid->column('price', __('价格'));
         $grid->column('created_at', __('创建时间'));
         // $grid->column('updated_at', __('Updated at'));
 
@@ -66,7 +69,9 @@ class DishesAdmin extends AdminController
         $form = new Form(new Dishes());
 
         $form->text('title', __('名称'));
-        $form->text('detail', __('详情'));
+        // $form->text('detail', __('详情'));
+        $form->simditor('detail', '详情');
+        $form->currency('price', __('价格'))->symbol('￥');
         // $form->text('imgSrc', __('主图'));
         $form->image('imgSrc', '主图');
 
