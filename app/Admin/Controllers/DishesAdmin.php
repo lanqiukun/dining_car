@@ -2,20 +2,20 @@
 
 namespace App\Admin\Controllers;
 
-use App\User;
+use App\Dishes;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 
-class UserAdmin extends AdminController
+class DishesAdmin extends AdminController
 {
     /**
      * Title for current resource.
      *
      * @var string
      */
-    protected $title = '用户';
+    protected $title = '菜品';
 
     /**
      * Make a grid builder.
@@ -24,14 +24,12 @@ class UserAdmin extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new User());
+        $grid = new Grid(new Dishes());
 
         $grid->column('id', __('ID'));
-        $grid->column('avatar', '头像')->gallery(['zooming' => true]);
-        $grid->column('nickname', __('昵称'));
-        $grid->column('openid', __('openid'));
-        // $grid->column('avatar', __('头像'));
-        // $grid->column('token', __('Token'));
+        $grid->column('title', __('名称'));
+        // $grid->column('detail', __('详情'));
+        $grid->column('imgSrc', __('主图'));
         $grid->column('created_at', __('创建时间'));
         // $grid->column('updated_at', __('Updated at'));
 
@@ -46,13 +44,12 @@ class UserAdmin extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(User::findOrFail($id));
+        $show = new Show(Dishes::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('openid', __('Openid'));
-        $show->field('nickname', __('Nickname'));
-        $show->field('avatar', __('Avatar'));
-        $show->field('token', __('Token'));
+        $show->field('title', __('Title'));
+        $show->field('detail', __('Detail'));
+        $show->field('imgSrc', __('ImgSrc'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -66,12 +63,12 @@ class UserAdmin extends AdminController
      */
     protected function form()
     {
-        $form = new Form(new User());
+        $form = new Form(new Dishes());
 
-        $form->text('openid', __('Openid'));
-        $form->text('nickname', __('Nickname'));
-        $form->image('avatar', __('Avatar'));
-        $form->text('token', __('Token'));
+        $form->text('title', __('名称'));
+        $form->text('detail', __('详情'));
+        // $form->text('imgSrc', __('主图'));
+        $form->image('imgSrc', '主图');
 
         return $form;
     }
