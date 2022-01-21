@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends BaseModel
+class Order extends BaseModel
 {
-    protected $table = 'user';
+    protected $table = 'order';
+
 }

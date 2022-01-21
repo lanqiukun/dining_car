@@ -226,7 +226,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Dishes' => App\Dishes::class,
+        'User' => App\User::class,
+        'Order' => App\Order::class,
+        'UserCtrl' => App\Http\Controllers\UserCtrl::class,
+        'DishesCtrl' => App\Http\Controllers\DishesCtrl::class,
+        'OrderCtrl' => App\Http\Controllers\OrderCtrl::class,
     ],
 
 ];
