@@ -50,7 +50,7 @@ return [
 
         'backend' => [
             'driver' => 'local',
-            'root' => storage_path('backend'),
+            'root' => storage_path(),
             'url' => '/backend',
         ],
 

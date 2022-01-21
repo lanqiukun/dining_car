@@ -9,7 +9,7 @@ class CategoryCtrl extends Controller
 {
     static public function all()
     {
-        $categories = Category::with(['dishes'])->get();
+        $categories = Category::select(['id', 'title'])->get();
 
         return [
             'status' => 0,

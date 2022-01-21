@@ -8,11 +8,9 @@ class Dishes extends BaseModel
 {
     protected $table = 'dishes';
     
-    protected $appends = ['cover'];
-
-    public function getCoverAttribute()
+    public function getImgurlAttribute($imgurl)
     {
-        return env('APP_URL') . 'backend/' . $this->imgSrc;
+        return env('APP_URL') . $imgurl;
     }
 
     public function category()

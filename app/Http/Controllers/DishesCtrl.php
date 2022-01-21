@@ -9,7 +9,7 @@ class DishesCtrl extends Controller
 {
     static public function top()
     {
-        $top = Dishes::select(['id', 'imgSrc', 'title'])->orderBy('sales', 'desc')->take(3)->get()->toArray();
+        $top = Dishes::select(['id', 'imgurl', 'title'])->orderBy('sales', 'desc')->take(3)->get()->toArray();
 
         return [
             'status' => 0,
@@ -19,14 +19,24 @@ class DishesCtrl extends Controller
 
     static public function all() 
     {
-        $all = Dishes::select(['id', 'imgSrc', 'title', 'price'])->get()->toArray();
-
-        foreach($all as &$item)
-            $item['imgSrc'] = env('APP_URL') . 'backend/' . $item['imgSrc'];
+        $all = Dishes::select(['id', 'imgurl', 'title', 'price'])->get()->toArray();
 
         return [
             'status' => 0,
             'all' => $all,
         ];
     }
+
+    static public function detail()
+    {
+        $id = request('id');
+
+        $dishes = Dishes::find($id);
+
+        return [
+            'status' => 0,
+            'dishes' => $dishes,
+        ];
+    }
+
 }

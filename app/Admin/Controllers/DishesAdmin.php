@@ -30,7 +30,7 @@ class DishesAdmin extends AdminController
         $grid->column('id', __('ID'));
         $grid->column('title', __('名称'))->editable();
         // $grid->column('detail', __('详情'));
-        $grid->column('imgSrc', '主图')->gallery(['height' => 80, 'zooming' => true]);
+        $grid->column('imgurl', '主图')->gallery(['height' => 80, 'zooming' => true]);
 
         $categories = Category::pluck('title', 'id')->toArray();
 
@@ -59,7 +59,7 @@ class DishesAdmin extends AdminController
         $show->field('id', __('Id'));
         $show->field('title', __('Title'));
         $show->field('detail', __('Detail'));
-        $show->field('imgSrc', __('ImgSrc'));
+        $show->field('imgurl', __('imgurl'));
         $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
@@ -79,7 +79,7 @@ class DishesAdmin extends AdminController
         // $form->text('detail', __('详情'));
         $form->simditor('detail', '详情');
         $form->currency('price', __('价格'))->symbol('￥');
-        $form->image('imgSrc', '主图');
+        $form->image('imgurl', '主图');
         $form->number('sales', __('销量'));
 
         $categories = Category::pluck('title', 'id')->toArray();

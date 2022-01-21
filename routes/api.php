@@ -37,5 +37,8 @@ Route::middleware(['check.token'])->group(function() {
 
 Route::get('/all_dishes', "DishesCtrl@all");
 Route::get('/top_dishes', "DishesCtrl@top");
+Route::get('/dishes_detail', "DishesCtrl@detail");
+
 
 Route::get('/all_category', "CategoryCtrl@all");
+
