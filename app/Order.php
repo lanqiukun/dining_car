@@ -8,4 +8,9 @@ class Order extends BaseModel
 {
     protected $table = 'order';
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
 }

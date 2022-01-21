@@ -31,3 +31,6 @@ Route::post('/simditor/upload', function() {
     ];
 });
 
+Route::middleware(['check.token'])->group(function() {
+    Route::post('submit_order', "OrderCtrl@submit_order");
+});
