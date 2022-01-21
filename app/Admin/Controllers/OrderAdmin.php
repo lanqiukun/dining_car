@@ -28,7 +28,7 @@ class OrderAdmin extends AdminController
 
         $grid->column('id', __('ID'));
         $grid->column('user_id', __('User id'));
-        $grid->column('price', __('价格'));
+        // $grid->column('price', __('价格'));
         $grid->column('status', __('状态'))->using([
             0 => ' 已下单',
             1 => ' 等待配送',

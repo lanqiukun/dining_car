@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -75,4 +76,20 @@ class UserCtrl extends Controller
     
     }
 
+    static public function submit_order()
+    {
+        $user_id = request('user_id');
+        $dishes_id = request('dishes_id');
+
+        $order = Order::create([
+            'user_id' => $user_id,
+            'dishes_id' => $dishes_id,
+        ]);
+
+        return [
+            'status' => 0,
+            'msg' => '操作成功',
+            'order' => $order,
+        ];
+    }
 }
