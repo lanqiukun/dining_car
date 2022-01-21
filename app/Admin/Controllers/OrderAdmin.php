@@ -27,7 +27,10 @@ class OrderAdmin extends AdminController
         $grid = new Grid(new Order());
 
         $grid->column('id', __('ID'));
-        $grid->column('user_id', __('User id'));
+        $grid->column('user.nickname', __('用户'));
+        $grid->column('dishes.title', __('菜品'));
+        $grid->column('dishes.imgSrc', '主图')->gallery(['height' => 80, 'zooming' => true]);
+
         // $grid->column('price', __('价格'));
         $grid->column('status', __('状态'))->using([
             0 => ' 已下单',

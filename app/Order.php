@@ -13,4 +13,8 @@ class Order extends BaseModel
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
+    public function dishes()
+    {
+        return $this->hasOne(Dishes::class, 'id', 'dishes_id');
+    }
 }
