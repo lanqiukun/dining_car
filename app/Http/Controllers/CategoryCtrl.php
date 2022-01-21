@@ -16,4 +16,20 @@ class CategoryCtrl extends Controller
             'categories' => $categories,
         ];
     }
+
+    static public function dishes()
+    {
+        $categories = Category::with(['dishes'])->get();
+
+        foreach($categories as &$item) {
+            $item->cate = $item->title . '系列';
+            $item->detail = $item->dishes;
+            unset($item->dishes);
+        }
+
+        return [
+            'status' => 0,
+            'categories' => $categories,
+        ];
+    }
 }

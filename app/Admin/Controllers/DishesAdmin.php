@@ -80,11 +80,11 @@ class DishesAdmin extends AdminController
         $form->simditor('detail', '详情');
         $form->currency('price', __('价格'))->symbol('￥');
         $form->image('imgurl', '主图');
-        $form->number('sales', __('销量'));
+        $form->number('sales', __('销量'))->default(0);
 
         $categories = Category::pluck('title', 'id')->toArray();
 
-        $form->select( 'category_id', '分类')->options($categories);
+        $form->select('category_id', '分类')->options($categories);
 
         return $form;
     }

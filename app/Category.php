@@ -8,6 +8,11 @@ class Category extends BaseModel
 
     public $appends = ['cid'];
 
+    public function getBannerAttribute($banner)
+    {
+        return env('APP_URL') . $banner;
+    }
+
     public function getCidAttribute()
     {
         return 'c' . strval($this->id);

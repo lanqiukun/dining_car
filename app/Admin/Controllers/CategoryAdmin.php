@@ -28,6 +28,7 @@ class CategoryAdmin extends AdminController
 
         $grid->column('id', __('ID'));
         $grid->column('title', __('名称'))->editable();
+        $grid->column('banner', '主图')->gallery(['height' => 80, 'zooming' => true]);
 
         return $grid;
     }
@@ -58,6 +59,7 @@ class CategoryAdmin extends AdminController
         $form = new Form(new Category());
 
         $form->text('title', __('名称'));
+        $form->image('banner', '主图');
 
         return $form;
     }

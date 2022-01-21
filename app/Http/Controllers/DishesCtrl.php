@@ -17,6 +17,16 @@ class DishesCtrl extends Controller
         ];
     }
 
+    static public function new()
+    {
+        $new = Dishes::select(['id', 'imgurl', 'price', 'title'])->orderBy('created_at', 'desc')->take(3)->get()->toArray();
+
+        return [
+            'status' => 0,
+            'new' => $new,
+        ];
+    }
+
     static public function all() 
     {
         $all = Dishes::select(['id', 'imgurl', 'title', 'price'])->get()->toArray();
