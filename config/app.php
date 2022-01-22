@@ -233,6 +233,8 @@ return [
         'DishesCtrl' => App\Http\Controllers\DishesCtrl::class,
         'OrderCtrl' => App\Http\Controllers\OrderCtrl::class,
         'Category' => App\Category::class,
+        'Status' => App\Status::class,
+        'Position' => App\Position::class,
     ],
 
 ];

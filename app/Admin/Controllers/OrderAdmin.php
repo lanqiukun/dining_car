@@ -35,13 +35,7 @@ class OrderAdmin extends AdminController
         $grid->column('dishes.imgurl', '主图')->gallery(['height' => 80, 'zooming' => true]);
 
         // $grid->column('price', __('价格'));
-        $grid->column('status', __('状态'))->using([
-            0 => ' 已下单',
-            1 => ' 等待配送',
-            2 => ' 等待取餐',
-            3 => ' 取餐完成',
-            4 => ' 已评价',
-        ]);
+        $grid->column('status.description', __('状态'));
         $grid->column('created_at', __('创建时间'));
         // $grid->column('updated_at', __('Updated at'));
 

@@ -16,4 +16,5 @@ Route::group([
     $router->resource('orders', OrderAdmin::class);
     $router->resource('dishes', DishesAdmin::class);
     $router->resource('categories', CategoryAdmin::class);
+    $router->resource('positions', PositionAdmin::class);
 });
