@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Dishes;
 use App\Order;
+use App\Position;
 use Illuminate\Http\Request;
 
 class OrderCtrl extends Controller
@@ -26,6 +27,21 @@ class OrderCtrl extends Controller
             'status' => 0,
             'msg' => '操作成功',
             'order' => $order,
+        ];
+    }
+
+    static public function detail()
+    {
+        $id = request('id');
+
+        $order = Order::find($id);
+
+        $position = Position::find($order->position_id);
+
+        return [
+            'status' => 0,
+            'order' => $order,
+            'position' => $position,
         ];
     }
 

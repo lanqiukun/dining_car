@@ -35,6 +35,7 @@ Route::middleware(['check.token'])->group(function() {
 
     Route::post('submit_order', "OrderCtrl@submit_order");
     Route::get('order_list', "OrderCtrl@list");
+    
     Route::post('set_position', "PositionCtrl@set_position");
 
 });
@@ -50,3 +51,6 @@ Route::get('/category_dishes', "CategoryCtrl@dishes");
 
 
 Route::get('/all_position', "PositionCtrl@all");
+
+
+Route::get('order_detail', "OrderCtrl@detail");
