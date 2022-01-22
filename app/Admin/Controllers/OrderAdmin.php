@@ -2,6 +2,8 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Delivery;
+use App\Admin\Actions\Drop;
 use App\Order;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -26,11 +28,17 @@ class OrderAdmin extends AdminController
     {
         $grid = new Grid(new Order());
 
+        $grid->actions(function ($actions) {
+            $actions->add(new Delivery);
+            $actions->add(new Drop);
+        });
+
         $grid->column('id', __('ID'));
+        $grid->column('order_no', __('订单号'));
         $grid->column('user.nickname', __('用户'));
         $grid->column('dishes.title', __('菜品'));
         $grid->column('dishes.imgurl', '主图')->gallery(['height' => 80, 'zooming' => true]);
-        
+
         $grid->column('amount', __('数量'))->display(function($amount) {
             return $amount . '份';
         });

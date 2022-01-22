@@ -51,7 +51,7 @@ return [
         'backend' => [
             'driver' => 'local',
             'root' => storage_path(),
-            // 'url' => '/backend',
+            'url' => '/',
         ],
 
         'simditor' => [

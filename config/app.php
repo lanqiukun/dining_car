@@ -235,6 +235,7 @@ return [
         'Category' => App\Category::class,
         'Status' => App\Status::class,
         'Position' => App\Position::class,
+        'WechatCtrl' => App\Http\Controllers\WechatCtrl::class,
     ],
 
 ];

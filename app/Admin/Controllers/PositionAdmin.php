@@ -61,7 +61,7 @@ class PositionAdmin extends AdminController
         $form->text('location', __('地点'));
         // $form->decimal('longitude', __('经度'));
         // $form->decimal('latitude', __('纬度'));
-        $form->latlong('longitude', 'latitude', '坐标')->height(500)->default(['lat' => 39.908445, 'lng' => 116.397944]);;
+        $form->latlong('latitude', 'longitude', '坐标')->height(500)->default(['lat' => 39.908445, 'lng' => 116.397944]);;
 
         return $form;
     }

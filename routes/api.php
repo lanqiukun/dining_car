@@ -34,6 +34,8 @@ Route::post('/simditor/upload', function() {
 Route::middleware(['check.token'])->group(function() {
 
     Route::post('submit_order', "OrderCtrl@submit_order");
+    Route::post('get_food', "OrderCtrl@get_food");
+    
     Route::get('order_list', "OrderCtrl@list");
     
     Route::post('set_position', "PositionCtrl@set_position");
