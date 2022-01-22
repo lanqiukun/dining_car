@@ -406,6 +406,30 @@ return [
     */
 
     'extensions' => [
+        'latlong' => [
+
+            // Whether to enable this extension, defaults to true
+            'enable' => true,
+
+            // Specify the default provider
+            'default' => 'tencent',
+
+            // According to the selected provider above, fill in the corresponding api_key
+            'providers' => [
+
+                'baidu' => [
+                    'api_key' => '',
+                ],
+
+                'tencent' => [
+                    'api_key' => '4CPBZ-SWELF-E6LJJ-J6UKS-LN2A2-ZZBMM',
+                ],
+
+                'amap' => [
+                    'api_key' => '',
+                ],
+            ]
+        ],
         'grid-lightbox' => [
         
             // Set to `false` if you want to disable this extension

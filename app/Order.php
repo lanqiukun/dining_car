@@ -22,4 +22,9 @@ class Order extends BaseModel
     {
         return $this->hasOne(Dishes::class, 'id', 'dishes_id');
     }
+
+    public function position()
+    {
+        return $this->hasOne(Position::class, 'id', 'position_id');
+    }
 }

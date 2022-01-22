@@ -29,15 +29,19 @@ class OrderAdmin extends AdminController
         $grid->column('id', __('ID'));
         $grid->column('user.nickname', __('用户'));
         $grid->column('dishes.title', __('菜品'));
+        $grid->column('dishes.imgurl', '主图')->gallery(['height' => 80, 'zooming' => true]);
+        
         $grid->column('amount', __('数量'))->display(function($amount) {
             return $amount . '份';
         });
-        $grid->column('dishes.imgurl', '主图')->gallery(['height' => 80, 'zooming' => true]);
 
         // $grid->column('price', __('价格'));
+        $grid->column('position.location', __('配送地点'));
         $grid->column('status.description', __('状态'));
         $grid->column('created_at', __('创建时间'));
         // $grid->column('updated_at', __('Updated at'));
+
+        $grid->model()->orderBy('id', 'desc');
 
         return $grid;
     }

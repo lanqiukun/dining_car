@@ -28,8 +28,8 @@ class PositionAdmin extends AdminController
 
         $grid->column('id', __('ID'));
         $grid->column('location', __('地点'));
-        $grid->column('latitude', __('经度'));
-        $grid->column('longitude', __('纬度'));
+        $grid->column('longitude', __('经度'));
+        $grid->column('latitude', __('纬度'));
 
         return $grid;
     }
@@ -44,10 +44,7 @@ class PositionAdmin extends AdminController
     {
         $show = new Show(Position::findOrFail($id));
 
-        $show->field('id', __('Id'));
-        $show->field('location', __('Location'));
-        $show->field('latitude', __('Latitude'));
-        $show->field('longitude', __('Longitude'));
+        
 
         return $show;
     }
@@ -62,8 +59,9 @@ class PositionAdmin extends AdminController
         $form = new Form(new Position());
 
         $form->text('location', __('地点'));
-        $form->decimal('latitude', __('经度'));
-        $form->decimal('longitude', __('纬度'));
+        // $form->decimal('longitude', __('经度'));
+        // $form->decimal('latitude', __('纬度'));
+        $form->latlong('longitude', 'latitude', '坐标')->height(500)->default(['lat' => 39.908445, 'lng' => 116.397944]);;
 
         return $form;
     }

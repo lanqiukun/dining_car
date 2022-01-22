@@ -33,7 +33,7 @@ class OrderCtrl extends Controller
     {
         $user_id = request()->user->id;
 
-        $orders = Order::with(['dishes'])->where('user_id', $user_id)->orderBy('id', 'desc')->get();
+        $orders = Order::with(['dishes', 'position'])->where('user_id', $user_id)->orderBy('id', 'desc')->get();
 
         return [
             'status' => 0,
