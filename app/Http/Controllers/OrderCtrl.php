@@ -116,14 +116,13 @@ class OrderCtrl extends Controller
             'template_id' => $template_id,
             'page' => 'page/component/food/get?id=' . $order->id,
             'data' => $data,
-            'miniprogram_state' => 'developer',
+            'miniprogram_state' => 'trial', //developer, trial, formal
             'lang' => 'zh_CN',
             
         ]);
 
         $result = $response->json();
         
-        logger($result);
 
     }
 }
