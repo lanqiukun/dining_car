@@ -3,6 +3,7 @@
 namespace App\Admin\Actions;
 
 use App\Http\Controllers\OrderCtrl;
+use App\Http\Controllers\WechatCtrl;
 use Encore\Admin\Actions\RowAction;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +17,7 @@ class Delivery extends RowAction
             return $this->response()->error('状态错误')->refresh();
         }
         
-        OrderCtrl::notify($model, 2);
+        WechatCtrl::notify($model, 2);
 
         $model->update(['status_id' => 2]);
         return $this->response()->success('已更新状态')->refresh();

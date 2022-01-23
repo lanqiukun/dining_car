@@ -17,7 +17,7 @@ class Drop extends RowAction
             return $this->response()->error('状态错误')->refresh();
         }
         
-        OrderCtrl::notify($model, 3);
+        WechatCtrl::notify($model, 3);
 
         $model->update(['status_id' => 3]);
         return $this->response()->success('已更新状态')->refresh();

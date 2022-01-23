@@ -84,45 +84,5 @@ class OrderCtrl extends Controller
 
     }
 
-    static public function notify($order, $type)
-    {
 
-        $user = $order->user;
-
-        $access_token = WechatCtrl::get_access_token();
-        $url = "https://api.weixin.qq.com/cgi-bin/message/subscribe/send?access_token=$access_token";
-
-        if ($type == 2) {
-            $template_id = 'Uo1wzgNN4SpcKDU-_wka_2mZoA6ZQH7pgzPdN2gcLJI'; // 配送通知
-            $data = [
-                'character_string2' => ['value' => $order->order_no],
-                'thing3' => ['value' => $order->position->location],
-                'thing6' => ['value' => $order->dishes->title],
-            ];
-        }
-        else if ($type == 3) {
-            $template_id = 'jC_l1IX9RKWKzV0irDoW0qvvCqQ-b6nrZJWpkxdUM0k'; // 取餐提醒
-
-            $data = [
-                'thing2' => ['value' => $order->position->location],
-                'thing4' => ['value' => $order->dishes->title],
-            ];
-        }
-
-        
-
-        $response = Http::retry(3, 3000)->post($url, [
-            'touser' => $user->openid,
-            'template_id' => $template_id,
-            'page' => 'page/component/food/get?id=' . $order->id,
-            'data' => $data,
-            'miniprogram_state' => 'trial', //developer, trial, formal
-            'lang' => 'zh_CN',
-            
-        ]);
-
-        $result = $response->json();
-        
-
-    }
 }
