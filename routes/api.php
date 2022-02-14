@@ -39,12 +39,17 @@ Route::middleware(['check.token'])->group(function() {
     Route::get('order_list', "OrderCtrl@list");
     
     Route::post('set_position', "PositionCtrl@set_position");
+    Route::post('recharge', "UserCtrl@recharge");
+    Route::get('balance', "UserCtrl@balance");
+    
+    
 
 });
 
 Route::get('/all_dishes', "DishesCtrl@all");
 Route::get('/top_dishes', "DishesCtrl@top");
 Route::get('/new_dishes', "DishesCtrl@new");
+Route::get('/search_dishes', "DishesCtrl@search");
 Route::get('/dishes_detail', "DishesCtrl@detail");
 
 

@@ -29,7 +29,7 @@ class OrderAdmin extends AdminController
         $grid = new Grid(new Order());
 
         $grid->actions(function ($actions) {
-            $actions->add(new Delivery);
+            // $actions->add(new Delivery);
             $actions->add(new Drop);
         });
 

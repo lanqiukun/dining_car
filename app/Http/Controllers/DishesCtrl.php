@@ -49,4 +49,27 @@ class DishesCtrl extends Controller
         ];
     }
 
+    static public function search()
+    {
+        $keyword = request('keyword');
+        $price_order = request("price_order");
+        $sales_order = request("sales_order");
+
+        $query_builder = Dishes::where('title', 'like', "%$keyword%");
+
+        if ($price_order)
+            $query_builder = $query_builder->orderBy("price", $price_order);
+        if ($sales_order)
+            $query_builder = $query_builder->orderBy("sales", $sales_order);
+        
+
+        $dishes = $query_builder->get();
+
+
+        return [
+            'status' => 0,
+            'dishes' => $dishes
+        ];
+    }
+
 }

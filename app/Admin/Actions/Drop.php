@@ -13,9 +13,9 @@ class Drop extends RowAction
 
     public function handle(Model $model)
     {
-        if ($model->status_id != 2 && $model->status_id != 3) {
-            return $this->response()->error('状态错误')->refresh();
-        }
+        // if ($model->status_id != 2 && $model->status_id != 3) {
+        //     return $this->response()->error('状态错误')->refresh();
+        // }
         
         WechatCtrl::notify($model, 3);
 

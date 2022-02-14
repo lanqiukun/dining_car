@@ -51,5 +51,24 @@ class UserCtrl extends Controller
     
     }
 
+    static public function balance() 
+    {
+        
+        return request()->user;
+
+    }
+
+    static public function recharge() 
+    {
+        $amount = request("amount");
+
+        $user = request()->user;
+
+        $user->update(['balance' => $user->balance + $amount]);
+
+        return $user->balance;
+
+    }
+
 
 }
