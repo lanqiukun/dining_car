@@ -9,6 +9,7 @@ use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
+use Encore\Admin\Widgets\Table;
 
 class OrderAdmin extends AdminController
 {
@@ -34,14 +35,31 @@ class OrderAdmin extends AdminController
         });
 
         $grid->column('id', __('ID'));
-        $grid->column('order_no', __('订单号'));
-        $grid->column('user.nickname', __('用户'));
-        $grid->column('dishes.title', __('菜品'));
-        $grid->column('dishes.imgurl', '主图')->gallery(['height' => 80, 'zooming' => true]);
+        
+        $grid->column('order_no', '订单号')->expand(function ($model) {
 
-        $grid->column('amount', __('数量'))->display(function($amount) {
-            return $amount . '份';
-        });
+            $dishes = array_map(function($e){
+                return [
+                    'id' => $e["id"],
+                    'title' => $e["title"],
+                    'price' => $e["price"],
+                    'amount' => $e["pivot"]["amount"],
+                ];
+            }, $model->dishes->toArray());
+
+           return new Table(['ID', '标题', '价格', '数量'], $dishes);
+        })->copyable();
+        
+        $grid->column('user.nickname', __('用户'));
+        $grid->column('lunch_box', __('归还餐具'));
+        $grid->column('cost', __('订单金额'));
+
+
+        // $grid->column('dishes.imgurl', '主图')->gallery(['height' => 80, 'zooming' => true]);
+
+        // $grid->column('amount', __('数量'))->display(function($amount) {
+        //     return $amount . '份';
+        // });
 
         // $grid->column('price', __('价格'));
         $grid->column('position.location', __('配送地点'));

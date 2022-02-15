@@ -66,6 +66,8 @@ class OrderCtrl extends Controller
 
             $order = Order::create([
                 'user_id' => $user->id,
+                'lunch_box' => $lunch_box,
+                'cost' => $total_price,
             ]);
     
             foreach($tableware as $item) {

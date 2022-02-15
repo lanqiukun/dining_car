@@ -62,14 +62,14 @@ class WechatCtrl extends Controller
             $data = [
                 'character_string2' => ['value' => $order->order_no],
                 'thing3' => ['value' => $order->position->location],
-                'thing6' => ['value' => $order->dishes->title],
+                'thing6' => ['value' => "极速外卖菜品"],
             ];
         }
         else if ($type == 3) {
             $template_id = 'jC_l1IX9RKWKzV0irDoW0qvvCqQ-b6nrZJWpkxdUM0k'; // 取餐提醒
 
             $data = [
-                'thing2' => ['value' => $order->dishes->title],
+                'thing2' => ['value' => "极速外卖菜品"],
                 'thing4' => ['value' => $order->position->location],
             ];
         }

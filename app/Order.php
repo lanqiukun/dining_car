@@ -20,7 +20,7 @@ class Order extends BaseModel
 
     public function dishes()
     {
-        return $this->belongsToMany(Dishes::class, 'order_dishes', 'order_id', 'dishes_id');
+        return $this->belongsToMany(Dishes::class, 'order_dishes', 'order_id', 'dishes_id')->withPivot('amount');
     }
 
     public function position()
