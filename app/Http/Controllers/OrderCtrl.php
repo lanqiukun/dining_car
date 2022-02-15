@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Dishes;
 use App\Order;
+use App\OrderDishes;
 use App\Position;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class OrderCtrl extends Controller
@@ -37,17 +41,58 @@ class OrderCtrl extends Controller
 
     static public function submit_order()
     {
-        $user_id = request()->user->id;
-        $dishes_id = request('dishes_id');
-        $amount = request('amount');
+        $user = request()->user;
 
-        $order = Order::create([
-            'user_id' => $user_id,
-            'dishes_id' => $dishes_id,
-            'amount' => $amount,
-        ]);
+        $lunch_box = request('lunch_box');
+        
 
-        Dishes::find($dishes_id)->increment('sales', $amount);
+        $tableware_json = file_get_contents('php://input');
+        $tableware = json_decode($tableware_json, true);
+
+        $total_price = 0;
+  
+        foreach ($tableware as $item) 
+            $total_price += $item["price"] * $item["amount"];
+
+        $total_price -= ($lunch_box - 1) * 10;
+
+        if ($user->balance < $total_price)
+            return [
+                'status' => 1,
+                'msg' => '账户余额不足'
+            ];
+    
+
+        DB::beginTransaction();
+        try {
+
+            $order = Order::create([
+                'user_id' => $user->id,
+            ]);
+    
+            foreach($tableware as $item) {
+                OrderDishes::create([
+                    'order_id' => $order->id,
+                    'dishes_id' => $item['id'],
+                    'amount' => $item['amount'],
+                ]);
+                
+                Dishes::find($item['id'])->increment('sales', $item['amount']);
+            }
+            
+            $user->update(['balance' => $user->balance - $total_price]);
+            
+        } catch (Exception $e) {
+            logger($e->getMessage());
+
+            DB::rollBack();
+
+            return [
+                'status' => 2,
+                'msg' => '系统错误',
+            ];
+        }
+        DB::commit();
 
         return [
             'status' => 0,

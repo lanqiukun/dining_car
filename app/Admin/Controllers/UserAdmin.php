@@ -29,8 +29,8 @@ class UserAdmin extends AdminController
         $grid->column('id', __('ID'));
         $grid->column('avatar', '头像')->gallery(['height' => 80, 'zooming' => true]);
         $grid->column('nickname', __('昵称'));
+        $grid->column('balance', __('余额'))->editable();
         $grid->column('openid', __('openid'));
-        // $grid->column('avatar', __('头像'));
         // $grid->column('token', __('Token'));
         $grid->column('created_at', __('创建时间'));
         // $grid->column('updated_at', __('Updated at'));
@@ -71,6 +71,8 @@ class UserAdmin extends AdminController
         $form->text('openid', __('Openid'));
         $form->text('nickname', __('Nickname'));
         $form->image('avatar', __('Avatar'));
+        $form->decimal('balance', __('余额'));
+
         $form->text('token', __('Token'));
 
         return $form;
