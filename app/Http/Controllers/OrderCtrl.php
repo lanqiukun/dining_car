@@ -45,13 +45,11 @@ class OrderCtrl extends Controller
 
         $lunch_box = request('lunch_box');
         
-
         $tableware_json = file_get_contents('php://input');
-        $tableware = json_decode($tableware_json, true);
+        $tableware = json_decode($tableware_json, true)['tableware'];
 
         $total_price = 0;
-  
-        foreach ($tableware as $item) 
+        foreach ($tableware as $item)
             $total_price += $item["price"] * $item["amount"];
 
         $total_price -= ($lunch_box - 1) * 10;
