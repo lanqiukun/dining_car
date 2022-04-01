@@ -48,7 +48,7 @@ class OrderAdmin extends AdminController
             }, $model->dishes->toArray());
 
            return new Table(['ID', '标题', '价格', '数量'], $dishes);
-        })->copyable();
+        });
         
         $grid->column('user.nickname', __('用户'));
         $grid->column('lunch_box', __('归还餐具'));
