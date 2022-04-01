@@ -18,5 +18,5 @@ class BaseModel extends Model
     {
         return date("Y-m-d H:i:s", strtotime($created_at));
     }
-    
+     
 }
